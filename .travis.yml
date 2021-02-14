@@ -1,0 +1,37 @@
+language: python
+python:
+  - "3.7"
+install:
+  - pip install requirement.txt
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+env:
+  global:
+  - USER="LyuLumos"
+  - EMAIL="3208413453@qq.com"
+  - REPO="VJudge-Spider-on-TravisCI"
+  - FILES="out.csv"
+  - GH_REPO="github.com/${USER}/${REPO}.git"
+  # - secure: "put travis gem output here => http://docs.travis-ci.com/user/encryption-keys/"
+before_script:
+  - cp out.csv backup/`date +%Y%m%d%H`.csv
+script:
+  - python run.py
+after_success:
+  - MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
+  - git clone git://${GH_REPO}
+  - mv -f ${FILES} ${REPO}
+  - cd ${REPO}
+  - git remote
+  - git config user.email ${EMAIL}
+  - git config user.name ${USER}
+  - git add ${FILES}
+  - git commit -m ${MESSAGE}
+  - git push "https://${TRAVIS_SECURE_TOKEN_NAME}@${GH_REPO}" master > /dev/null 2>&1
+branches:
+  only:
+    - master
