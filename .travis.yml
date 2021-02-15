@@ -17,8 +17,6 @@ env:
   - FILES="out.csv"
   - GH_REPO="github.com/${USER}/${REPO}.git"
   # - secure: "put travis gem output here => http://docs.travis-ci.com/user/encryption-keys/"
-before_script:
-  - cp out.csv backup/`date +%Y%m%d%H`.csv
 script:
   - python run.py
 after_success:
