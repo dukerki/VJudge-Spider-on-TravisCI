@@ -34,4 +34,4 @@ after_success:
   - git push "https://${M8rl4_zMNTHjaF1M331pHg}@${GH_REPO}" master > /dev/null 2>&1
 branches:
   only:
-    - master
+    - main
