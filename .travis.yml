@@ -1,13 +1,10 @@
 language: python
 python:
   - "3.7"
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
 install:
+  - sudo apt-get update
+  - sudo apt-get install libgconf2-4 libxss1 unzip -y
+  - sudo apt-get -f install -y
   - pip install -r requirement.txt
 env:
   global:
@@ -17,14 +14,15 @@ env:
   - FILES="out.csv"
   - GH_REPO="github.com/${USER}/${REPO}.git"
   # - secure: "put travis gem output here => http://docs.travis-ci.com/user/encryption-keys/"
-services:
-  - xvfb
 before_script:
-  - wget http://chromedriver.storage.googleapis.com/71.0.3578.80/chromedriver_linux64.zip
-  - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.7.1/
-  - export CHROME_BIN=chromium-browser
-  - "export DISPLAY=:99.0"
-  - sleep 3 
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
+  - LATEST=$(wget -q -O - http://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+  - wget http://chromedriver.storage.googleapis.com/$LATEST/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+  - chmod +x chromedriver
+  - sudo mv chromedriver /usr/bin/
+  - chromedriver --version
 script:
   - python run.py
 after_success:

@@ -62,14 +62,21 @@ class contestant:
 
 def getResultOfUrl(url, ifShowUpsloved):
 
-    options = webdriver.ChromeOptions()
-    options.binary_location = '/usr/bin/chromium-browser'
-    #All the arguments added for chromium to work on selenium
-    options.add_argument("--no-sandbox") #This make Chromium reachable
-    options.add_argument("--no-default-browser-check") #Overrides default choices
-    options.add_argument("--no-first-run")
-    options.add_argument("--disable-default-apps") 
-    browser = webdriver.Chrome('/home/travis/virtualenv/python3.7.1/chromedriver',chrome_options=options)
+   # options = webdriver.ChromeOptions()
+    # options.binary_location = '/usr/bin/chromium-browser'
+    # #All the arguments added for chromium to work on selenium
+    # options.add_argument("--no-sandbox") #This make Chromium reachable
+    # options.add_argument("--no-default-browser-check") #Overrides default choices
+    # options.add_argument("--no-first-run")
+    # options.add_argument("--disable-default-apps")
+    # browser = webdriver.Chrome('/home/travis/virtualenv/python3.7.1/chromedriver',options=options)
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument("window-size=1024,768")
+    chrome_options.add_argument("--no-sandbox")
+    browser = webdriver.Chrome(chrome_options=chrome_options)
     browser.get(url)
     time.sleep(5)
 
