@@ -69,9 +69,7 @@ def getResultOfUrl(url, ifShowUpsloved):
     options.add_argument("--no-default-browser-check") #Overrides default choices
     options.add_argument("--no-first-run")
     options.add_argument("--disable-default-apps") 
-    driver = webdriver.Chrome('/home/travis/virtualenv/python3.7.1/chromedriver',chrome_options=options)
-
-    browser = webdriver.Chrome()
+    browser = webdriver.Chrome('/home/travis/virtualenv/python3.7.1/chromedriver',chrome_options=options)
     browser.get(url)
     time.sleep(5)
 
