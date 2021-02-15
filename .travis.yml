@@ -2,7 +2,7 @@ language: python
 python:
   - "3.7"
 install:
-  - pip install requirement.txt
+  - pip install -r requirement.txt
 addons:
   apt:
     sources:
