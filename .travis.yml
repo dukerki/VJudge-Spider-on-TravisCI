@@ -1,6 +1,12 @@
 language: python
 python:
   - "3.7"
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 install:
   - pip install -r requirement.txt
 env:
@@ -14,7 +20,7 @@ env:
 services:
   - xvfb
 before_script:
-  - wget http://chromedriver.storage.googleapis.com/2.10/chromedriver_linux64.zip
+  - wget http://chromedriver.storage.googleapis.com/71.0.3578.80/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.7.1/
   - export CHROME_BIN=chromium-browser
   - "export DISPLAY=:99.0"
