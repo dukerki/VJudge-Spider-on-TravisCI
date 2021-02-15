@@ -13,7 +13,6 @@ env:
   - REPO="VJudge-Spider-on-TravisCI"
   - FILES="out.csv"
   - GH_REPO="github.com/${USER}/${REPO}.git"
-  # - secure: "put travis gem output here => http://docs.travis-ci.com/user/encryption-keys/"
 before_script:
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
@@ -25,19 +24,20 @@ before_script:
   - chromedriver --version
 script:
   - python run.py
-  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./travis/run_on_pull_requests; fi'
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./travis/run_on_non_pull_requests; fi'
-# after_success:
-#   - MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
-#   - git clone https://${GH_REPO}
-#   - mv -f ${FILES} ${REPO}
-#   - cd ${REPO}
-#   - git remote
-#   - git config user.email ${EMAIL}
-#   - git config user.name ${USER}
-#   - git add ${FILES}
-#   - git commit -m "${MESSAGE}"
-#   - git push origin main
+after_success:
+  - MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
+  - git clone https://${GH_REPO}
+  - mv -f ${FILES} ${REPO}
+  - cd ${REPO}
+  - eval "$(ssh-agent -s)"
+  - chmod 600 .travis/deploy_key.pem 
+  - ssh-add .travis/deploy_key.pem
+  - git remote
+  - git config user.email ${EMAIL}
+  - git config user.name ${USER}
+  - git add ${FILES}
+  - git commit -m "${MESSAGE}"
+  - git push origin main
 branches:
   only:
     - main
