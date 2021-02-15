@@ -35,7 +35,7 @@ after_success:
   - git config user.name ${USER}
   - git add ${FILES}
   - git commit -m "${MESSAGE}"
-  - git push "https://${M8rl4_zMNTHjaF1M331pHg}@${GH_REPO}" main > /dev/null 2>&1
+  - git push origin main
 branches:
   only:
     - main
