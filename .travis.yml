@@ -6,10 +6,11 @@ install:
   - sudo apt-get install libgconf2-4 libxss1 unzip -y
   - sudo apt-get -f install -y
   - pip install -r requirement.txt
+  - echo -e "machine github.com\n  login ${GITHUB_TOKEN}" > ~/.netrc
 env:
   global:
-  - USER="LyuLumos"
-  - EMAIL="3208413453@qq.com"
+  # - USER="LyuLumos"
+  # - EMAIL="3208413453@qq.com"
   - REPO="VJudge-Spider-on-TravisCI"
   - FILES="out.csv"
   - GH_REPO="github.com/${USER}/${REPO}.git"
@@ -29,15 +30,12 @@ after_success:
   - git clone https://${GH_REPO}
   - mv -f ${FILES} ${REPO}
   - cd ${REPO}
-  - eval "$(ssh-agent -s)"
-  - chmod 600 .travis/deploy_key.pem 
-  - ssh-add .travis/deploy_key.pem
-  - git remote
-  - git config user.email ${EMAIL}
-  - git config user.name ${USER}
+  - git checkout -b data origin/data
+  # - git config user.email ${EMAIL}
+  # - git config user.name ${USER}
   - git add ${FILES}
   - git commit -m "${MESSAGE}"
-  - git push origin main
+  - git push origin data
 branches:
   only:
     - main
