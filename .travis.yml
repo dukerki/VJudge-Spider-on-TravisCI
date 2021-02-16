@@ -6,6 +6,7 @@ install:
   - sudo apt-get install libgconf2-4 libxss1 unzip -y
   - sudo apt-get -f install -y
   - pip install -r requirement.txt
+  - echo -e "machine github.com\n  login ${GITHUB_TOKEN}" > ~/.netrc
 env:
   global:
   - USER="LyuLumos"
@@ -33,8 +34,9 @@ after_success:
   - git config user.email ${EMAIL}
   - git config user.name ${USER}
   - git checkout data
-  - git pull origin main --allow-unrelated-histories
+  # - git pull origin main --allow-unrelated-histories
   - mv -f ../${FILES} ${FILES}
+  - ls -a
   - git add .
   - git commit -m "${MESSAGE}"
   - git push origin data
