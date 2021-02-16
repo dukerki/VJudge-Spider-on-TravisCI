@@ -29,7 +29,7 @@ after_success:
   - mv -f ${FILES} ${REPO}
   - cd ${REPO}
   - git checkout -b data origin/data
-  - git add ${FILES}
+  - git add .
   - git commit -m "${MESSAGE}"
   - git push origin data
 branches:
