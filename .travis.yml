@@ -25,6 +25,7 @@ script:
   - python run.py
 after_success:
   - MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
+  - git config --list
   - git clone https://${GH_REPO}
   - cd ${REPO}
   - git checkout data
