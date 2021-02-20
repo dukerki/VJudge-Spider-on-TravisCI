@@ -33,12 +33,11 @@ after_success:
   - git config user.email ${EMAIL}
   - git config user.name ${USER}
   # - git checkout data
-  # - git pull origin main --allow-unrelated-histories
   - mv -f ../${FILES} ${FILES}
   - ls -al
   - git add .
-  - git commit -m "${MESSAGE}"
-  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REPO}" main
+  - git commit -m "${MESSAGE}; Build by Travis CI"
+  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REPO}" data
   # - git push origin data
 branches:
   only:
