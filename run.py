@@ -1,3 +1,4 @@
+# Most of this code is based on Kate123Wong-2873311074@qq.com
 from selenium import webdriver
 import requests
 import time
