@@ -6,6 +6,7 @@ install:
   - sudo apt-get install libgconf2-4 libxss1 unzip -y
   - sudo apt-get -f install -y
   - pip install -r requirement.txt
+  - echo -e "machine github.com\n  login ${GITHUB_TOKEN}" > ~/.netrc
 env:
   global:
   - USER="LyuLumos"
@@ -27,17 +28,17 @@ script:
 after_success:
   - MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
   - git clone https://${GH_REPO}
-  - mv -f ${FILES} ${REPO}
+  - git checkout -b data
+  - git branch
   - cd ${REPO}
-  - eval "$(ssh-agent -s)"
-  - chmod 600 .travis/deploy_key.pem 
-  - ssh-add .travis/deploy_key.pem
   - git remote
   - git config user.email ${EMAIL}
   - git config user.name ${USER}
-  - git add ${FILES}
-  - git commit -m "${MESSAGE}"
-  - git push origin main
+  - mv -f ../${FILES} ${FILES}
+  - ls -al
+  - git add .
+  - git commit -m "${MESSAGE}; Build by Travis CI"
+  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REPO}:data"
 branches:
   only:
     - main

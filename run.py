@@ -62,7 +62,7 @@ class contestant:
 
 def getResultOfUrl(url, ifShowUpsloved):
 
-   # options = webdriver.ChromeOptions()
+    # options = webdriver.ChromeOptions()
     # options.binary_location = '/usr/bin/chromium-browser'
     # #All the arguments added for chromium to work on selenium
     # options.add_argument("--no-sandbox") #This make Chromium reachable
@@ -77,6 +77,7 @@ def getResultOfUrl(url, ifShowUpsloved):
     chrome_options.add_argument("window-size=1024,768")
     chrome_options.add_argument("--no-sandbox")
     browser = webdriver.Chrome(options=chrome_options)
+    # browser = webdriver.Chrome()
     browser.get(url)
     time.sleep(3)
 
@@ -112,13 +113,13 @@ def getResultOfUrl(url, ifShowUpsloved):
                     "./div/a/span/text()")[0])).replace('(', '').replace(')', '').replace(' ', '')
 
             if "accepted" in classes:
-                stu.accepted = stu.accepted + 1
+                stu.accepted += 1
 
             if "fb" in classes:
-                stu.accepted_fb = stu.accepted_fb + 1
+                stu.accepted_fb += 1
 
             if "upsolved" in classes:
-                stu.upsolved = stu.upsolved + 1
+                stu.upsolved += 1
 
         student.append(stu)
 
