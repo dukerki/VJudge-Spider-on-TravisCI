@@ -32,13 +32,11 @@ after_success:
   - git remote
   - git config user.email ${EMAIL}
   - git config user.name ${USER}
-  # - git checkout data
   - mv -f ../${FILES} ${FILES}
-  - ls -al
+  # - ls -al
   - git add .
   - git commit -m "${MESSAGE}; Build by Travis CI"
-  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REPO}" data
-  # - git push origin data
+  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REPO}" origin/data
 branches:
   only:
     - main
