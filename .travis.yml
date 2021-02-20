@@ -38,7 +38,7 @@ after_success:
   - ls -al
   - git add .
   - git commit -m "${MESSAGE}; Build by Travis CI"
-  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REPO}"  "https://${GITHUB_TOKEN}@${GH_REPO}:data"
+  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REPO}:data"
 branches:
   only:
     - main
