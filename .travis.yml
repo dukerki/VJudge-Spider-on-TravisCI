@@ -28,8 +28,8 @@ script:
 after_success:
   - MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
   - git clone https://${GH_REPO}
-  - git checkout -b data
-  - git branch
+  # - git checkout -b data
+  # - git branch
   - cd ${REPO}
   - git remote
   - git config user.email ${EMAIL}
@@ -38,7 +38,7 @@ after_success:
   - ls -al
   - git add .
   - git commit -m "${MESSAGE}; Build by Travis CI"
-  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REPO}:data"
+  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REPO}" main
 branches:
   only:
-    - main
+    - data
