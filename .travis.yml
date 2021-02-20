@@ -33,13 +33,14 @@ after_success:
   - git remote
   - git config user.email ${EMAIL}
   - git config user.name ${USER}
-  - git checkout data
+  # - git checkout data
   # - git pull origin main --allow-unrelated-histories
   - mv -f ../${FILES} ${FILES}
-  - ls -a
+  - ls -al
   - git add .
   - git commit -m "${MESSAGE}"
-  - git push origin data
+  - git push --force --quiet "https://${GITHUB_TOKEN}@${REPO}" main
+  # - git push origin data
 branches:
   only:
     - main
