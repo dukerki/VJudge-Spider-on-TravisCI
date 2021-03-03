@@ -21,21 +21,24 @@ https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/main/out.csv
 - 首次运行请保留 `out.csv` 中的标题行。
 
 
+
 ## Meet Error?
 
 如果爬虫代码遇到问题，建议在本地运行。需要的包在 `requirement.txt` 中。
 
 ### Linux
 
+
 `.travis.yml` 中包含了需要的全部操作，不需要更改爬虫代码。
 
 ### Windows
 
 请自行下载 Chrome浏览器 和 Chromedriver，注释 `run.py` 74-79行，取消注释第80行，之后再运行。
-```py
+
 # 本地运行（建议提前做好备份）
 python run.py
 ```
+
 
 ## Acknowledgement
 
