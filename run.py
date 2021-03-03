@@ -4,6 +4,7 @@ import requests
 import time
 from lxml import etree
 import sys
+from selenium.common.exceptions import InvalidArgumentException
 
 this_url = ""
 pre_url = ""
@@ -79,7 +80,11 @@ def getResultOfUrl(url, ifShowUpsloved):
     chrome_options.add_argument("--no-sandbox")
     browser = webdriver.Chrome(options=chrome_options)
     # browser = webdriver.Chrome()
-    browser.get(url)
+    try:
+        browser.get(url)
+    except InvalidArgumentException:
+        print("Null input or Error")
+        return []
     time.sleep(3)
 
     browser.find_element_by_xpath('//*[@id="btn-setting"]').click()
