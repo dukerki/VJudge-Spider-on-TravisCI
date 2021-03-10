@@ -220,13 +220,15 @@ def getResult(students):
 if __name__ == '__main__':
     readin()
     students_this = getResultOfUrl(this_url, False)  # 本次页面统计，不统计upsloved的成绩
+    print("this_url success")
     students_pre = getResultOfUrl(pre_url, True)  # 对上次比赛页面进行统计，主要得到upsloved成绩
+    print("pre_url success")
     # 整合本次AC，only AC， fb成绩和上次比赛的补题成绩
     students = getResultHaveUPsolved(students_this, students_pre)
     students = getResult(students)
     
     f = open('out.csv', 'w', encoding="utf8")
-    print('Name, Accepted, OnlyAC, FirstBlood, ThisRank, Upsolved, Score, SumScore, Rank', file=f)
+    print('Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Rank', file=f)
     for stu in students:
         if stu.name != '':
             print('{0},{1},{2},{3},{4},{5},{6:.1f},{7:.1f},{8}'.format(stu.name, stu.accepted, stu.only_ac,

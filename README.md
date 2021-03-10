@@ -49,3 +49,23 @@ python run.py
 LyuLumos 2021.2.21
 
 Maybe the last repo built for CUC-ACM Team
+```
+
+## 加分规则：
+    总分 = 过题分 + 附加分 + 补题分(一周有效)+ 排名奖励分
+
+    过题分:
+    1分
+
+    附加分
+    Only AC: +0.5
+    FB:      +0.2   
+
+    补题分
+    solve_up:+0.5
+
+    排名奖励分
+    < 10%:   +4
+    < 30%:   +3
+    < 60%:   +2
+    else :   +1
