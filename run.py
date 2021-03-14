@@ -145,8 +145,21 @@ def getResultOfUrl(url, ifShowUpsloved):
                           0.2 + stu.only_ac * 0.5
         stu.score_sum = stu.score_ac + stu.score_extra
         stu.score_this = stu.score_sum
-
-    return student
+    
+    # 计算本场来了的比赛排名奖励分：
+    students = sorted(student)
+    if not ifShowUpsloved:
+        for stu in students:
+            rate = (students.index(stu) + 1) / students.__len__()
+            if rate < 0.1:
+                stu.score_rank = 4
+            elif rate < 0.3:
+                stu.score_rank = 3
+            elif rate < 0.6:
+                stu.score_rank = 2
+            else:
+                stu.score_rank = 1
+    return students
 
 
 def getResultHaveUPsolved(students_this, students_pre):
@@ -163,13 +176,14 @@ def getResultHaveUPsolved(students_this, students_pre):
                 students_pre.remove(stu_pre)
 
         students.append(tmpstu)
-
+    
     # 维护本次没有来，但是上次来了的同学的信息
     for stu_pre in students_pre:
         tmpstu = contestant()
         tmpstu.upsolved = stu_pre.upsolved
         tmpstu.score_up = stu_pre.score_up
         tmpstu.score_sum += tmpstu.score_up
+        tmpstu.name=stu_pre.name
         students.append(tmpstu)
 
     return students
@@ -196,24 +210,14 @@ def getResult(students):
                 students.append(tmpstu)
     f.close()
 
-    students = sorted(students)
     for stu in students:
-        rate = (students.index(stu) + 1) / students.__len__()
-        if rate < 0.1:
-            stu.score_rank = 4
-        elif rate < 0.3:
-            stu.score_rank = 3
-        elif rate < 0.6:
-            stu.score_rank = 2
-        else:
-            stu.score_rank = 1
         stu.score_sum = float(stu.score_sum) + stu.score_rank
         stu.score_this = float(stu.score_this) + float(stu.score_rank)
 
     students = sorted(students)
+  
     for stu in students:
         stu.rank = students.index(stu) + 1
-
     return students
 
 
@@ -229,6 +233,7 @@ if __name__ == '__main__':
     
     f = open('out.csv', 'w', encoding="utf8")
     print('Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Rank', file=f)
+    
     for stu in students:
         if stu.name != '':
             print('{0},{1},{2},{3},{4},{5},{6:.1f},{7:.1f},{8}'.format(stu.name, stu.accepted, stu.only_ac,
