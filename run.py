@@ -115,9 +115,13 @@ def getResultOfUrl(url, ifShowUpsloved):
                 work_student[chr(ord('A') + j - 4)].append(stu.name)
 
             if "team" in classes:
+                if len(column[j].xpath("./div/a/span/text()"))<1 :
+                    print("invaild name contestant") # 如果没有nickname，就不会统计
+                    continue
+
                 stu.name = (str(column[j].xpath(
                     "./div/a/span/text()")[0])).replace('(', '').replace(')', '').replace(' ', '')
-
+                    
             if "accepted" in classes:
                 stu.accepted += 1
 
