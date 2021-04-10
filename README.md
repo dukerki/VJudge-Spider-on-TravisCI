@@ -36,6 +36,7 @@ https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/main/out.csv
 请自行下载 Chrome浏览器 和 Chromedriver，注释 `run.py` 74-79行，取消注释第80行，之后再运行。
 
 # 本地运行（建议提前做好备份）
+```python
 python run.py
 ```
 
@@ -49,7 +50,7 @@ python run.py
 LyuLumos 2021.2.21
 
 Maybe the last repo built for CUC-ACM Team
-```
+
 
 ## 加分规则：
     总分 = 过题分 + 附加分 + 补题分(一周有效)+ 排名奖励分
@@ -69,3 +70,4 @@ Maybe the last repo built for CUC-ACM Team
     < 30%:   +3
     < 60%:   +2
     else :   +1
+    
