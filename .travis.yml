@@ -28,6 +28,8 @@ script:
   - python run.py
 after_success:
   - MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
+  - git clone --branch=$TRAVIS_BRANCH https://${GH_REPO}
+  # - git checkout -b data
   # - git branch
   - cd ${REPO}
   - git remote
@@ -36,9 +38,8 @@ after_success:
     # - mv -f ../${FILES} ${FILES}
   - ls  -al
   - git add .
-  - git commit -m "${MESSAGE}; Build by Travis CI"
-  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REPO}" out
-
+  - git commit -m "[skip travis] ${MESSAGE}; Build by Travis CI"
+  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REPO}"  $TRAVIS_BRANCH
 branches:
   only:
     - data

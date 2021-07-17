@@ -34,13 +34,11 @@ https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/out/out.csv
 
 ## Attention
 
-- 操作前，请仔细阅读此文档。
 - **目前尚未在某个学期内实际测试过，可能有bug。**
-- 运行时确保out分支上有out.csv文件,且需要有 `out.csv` 中的标题行。
+- 运行时确保main分支上有out.csv文件,且需要有 `out.csv` 中的标题行。
 * 创建比赛时不要设置密码。
-* 注意每push一次到main分支，都会构建一次，并且启动爬虫程序,更新上面链接中的数据！
-* push 到out分支，不会自动构建。所以，想要清空out.csv文件中的得分统计数据的话，直接在网页上更改提交也行,但注意必须要有标题行。
-* main分支的pull requets 也会触发构建
+* 注意每手动push一次到main分支，都会构建一次，并且启动爬虫程序,更新上面链接中的数据。
+* main分支的pull requets 也能够触发构建
 ### 标题行：
 ```
 Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Rank
@@ -61,20 +59,12 @@ Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Ra
 
 #### 本地运行（建议提前做好备份）
 ```bash
-git clone --branch=out https://github.com/LyuLumos/VJudge-Spider-on-TravisCI.git
+git clone  https://github.com/LyuLumos/VJudge-Spider-on-TravisCI.git
 python run.py
 ```
-之后进入`VJudge-Spider-on-TravisCI` 子文件的out.csv文件查看结果。
-#### 如果想要将本地运行结果推送上去：
-确保在VJudge-Spider-on-TravisCI目录下。
-```bash
-git commit -a
-git push orgin out
-```
-##### 如果只是想要更改main分支上的一些代码，push到main分支上,想要跳过此次构建：
+#### 如果想要将本地更改推送上去而不触发构建：
 参考这个链接：[Skipping a Build #](https://docs.travis-ci.com/user/customizing-the-build/#skipping-a-build)
 
-* 如果只想要统计分数的话就需要构建，更改main分支中的url，并push到main上就行了。
 ##### 
 ## Acknowledgement
 
