@@ -26,7 +26,10 @@ https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/main/out.csv
     else :   +1
  
 ## Usage
-
+! 使用之前先
+```bash
+git pull
+```
 1. 修改 `main` 分支下的 `url.txt` ，第一行写入本次训练网址，用于统计补题分数，第二行写入上次比赛网址。如果没有，空行就行。
 2. 写入完成后，将当前更改push 到远程仓库main分支上。然后会在Travis上自动构建运行。
 3. 最后点击上面的链接查看结果。
