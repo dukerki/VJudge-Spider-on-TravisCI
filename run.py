@@ -5,12 +5,11 @@ import time
 from lxml import etree
 import sys
 from selenium.common.exceptions import InvalidArgumentException
-import os
 
 this_url = ""
 pre_url = ""
 REPO="VJudge-Spider-on-TravisCI"
-out=os.path.join("out.csv")
+out="out.csv"
 
 def readin():
     global this_url

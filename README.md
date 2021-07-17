@@ -4,7 +4,7 @@
 
 ## Ranking File Link
 
-https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/out/out.csv
+https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/main/out.csv
 
 ## 加分规则：
     总分 = 过题分 + 附加分 + 补题分(一周有效)+ 排名奖励分
@@ -28,9 +28,8 @@ https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/out/out.csv
 ## Usage
 
 1. 修改 `main` 分支下的 `url.txt` ，第一行写入本次训练网址，用于统计补题分数，第二行写入上次比赛网址。如果没有，空行就行。
-2. 写入完成后，将当前更改push 到远程仓库main分支上。然后会在Travis上自动运行。
+2. 写入完成后，将当前更改push 到远程仓库main分支上。然后会在Travis上自动构建运行。
 3. 最后点击上面的链接查看结果。
-4. 如果需要修改 `out.csv`的内容请在 `out` 分支上进行增删。
 
 ## Attention
 
