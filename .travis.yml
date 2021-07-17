@@ -23,22 +23,24 @@ before_script:
   - chmod +x chromedriver
   - sudo mv chromedriver /usr/bin/
   - chromedriver --version
+  - git clone --branch=out https://${GH_REPO}
 script:
   - python run.py
 after_success:
   - MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
-  - git clone https://${GH_REPO}
-  # - git checkout -b data
   # - git branch
   - cd ${REPO}
   - git remote
   - git config user.email ${EMAIL}
   - git config user.name ${USER}
-  - mv -f ../${FILES} ${FILES}
-  - ls -al
+    # - mv -f ../${FILES} ${FILES}
+  - ls  -al
   - git add .
   - git commit -m "${MESSAGE}; Build by Travis CI"
-  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REPO}" main
+  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REPO}" out
+
 branches:
   only:
     - data
+    - z1933dev
+    - main
