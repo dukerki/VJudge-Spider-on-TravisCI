@@ -31,7 +31,7 @@ https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/out/out.csv
 1. 修改 `main` 分支下的 `url.txt` ，第一行写入本次训练网址，用于统计补题分数，第二行写入上次比赛网址。如果没有，空行就行。
 2. 写入完成后，将当前更改push 到远程仓库main分支上。然后会在Travis上自动运行。
 3. 最后点击上面的链接查看结果。
-如果需要做出修改 `out.csv`  内容请在 `out` 分支上进行增删。
+4. 如果需要修改 `out.csv`的内容请在 `out` 分支上进行增删。
 
 ## Attention
 
@@ -39,7 +39,7 @@ https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/out/out.csv
 - 运行时确保out分支上有out.csv文件,且需要有 `out.csv` 中的标题行。
 * 创建比赛时不要设置密码。
 * 注意每push一次到main分支，都会构建一次，并且启动爬虫程序,更新上面链接中的数据！
-* 不会对pull requests 进行构建。
+* push 到out分支，不会自动构建。所以，想要清空out.csv文件中的得分统计数据的话，直接在网页上更改提交也行,但注意必须要有标题行。
 ### 标题行：
 ```
 Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Rank
@@ -70,9 +70,10 @@ python run.py
 git commit -a
 git push orgin out
 ```
-##### 如果只是想要更改main分支上的一些代码，push到main分支上时想要跳过此次构建：
+##### 如果只是想要更改main分支上的一些代码，push到main分支上,想要跳过此次构建：
 参考这个链接：[Skipping a Build #](https://docs.travis-ci.com/user/customizing-the-build/#skipping-a-build)
 
+* 如果只想要统计分数的话就需要构建，更改main分支中的url，并push到main上就行了。
 ##### 
 ## Acknowledgement
 
