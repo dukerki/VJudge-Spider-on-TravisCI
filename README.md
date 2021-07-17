@@ -36,11 +36,11 @@ https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/out/out.csv
 ## Attention
 
 - **目前尚未在某个学期内实际测试过，可能有bug。**
-- 单学期内首末两次计分如遇到爬虫代码问题请手动调整 `run.py`。
 - 运行时确保out分支上有out.csv文件,且需要有 `out.csv` 中的标题行。
 * 创建比赛时不要设置密码。
-* 每push一次到main分支，都会启动爬虫程序！
+* 注意每push一次到main分支，都会构建一次，并且启动爬虫程序,更新上面链接中的数据！
 * 不会对pull requests 进行构建。
+### 标题行：
 ```
 Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Rank
 ```
@@ -55,6 +55,7 @@ Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Ra
 
 ### Windows
 
+#### Prerequest
 请自行下载 Chrome浏览器 和 Chromedriver，注释 `run.py` 74-79行，取消注释第80行，之后再运行。
 
 #### 本地运行（建议提前做好备份）
@@ -63,12 +64,14 @@ git clone --branch=out https://github.com/LyuLumos/VJudge-Spider-on-TravisCI.git
 python run.py
 ```
 之后进入`VJudge-Spider-on-TravisCI` 子文件的out.csv文件查看结果。
-#### 如果想要将运行结果推送上去：
+#### 如果想要将本地运行结果推送上去：
 确保在VJudge-Spider-on-TravisCI目录下。
 ```bash
 git commit -a
 git push orgin out
 ```
+##### 如果只是想要更改main分支上的一些代码，push到main分支上时想要跳过此次构建：
+参考这个链接：[Skipping a Build #](https://docs.travis-ci.com/user/customizing-the-build/#skipping-a-build)
 
 ##### 
 ## Acknowledgement
