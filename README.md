@@ -71,3 +71,9 @@ Maybe the last repo built for CUC-ACM Team
     < 60%:   +2
     else :   +1
     
+## 如果要尝试本地运行：
+在当前目录
+```
+git clone 
+```
+## 比赛链接不要设置密码

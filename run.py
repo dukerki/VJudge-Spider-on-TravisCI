@@ -5,10 +5,12 @@ import time
 from lxml import etree
 import sys
 from selenium.common.exceptions import InvalidArgumentException
+import os
 
 this_url = ""
 pre_url = ""
-
+REPO="VJudge-Spider-on-TravisCI"
+out=os.path.join(REPO,"out.csv")
 
 def readin():
     global this_url
@@ -195,7 +197,7 @@ def getResultHaveUPsolved(students_this, students_pre):
 
 def getResult(students):
     # 加上之前的sum值,排序，得到排名奖励分和rank
-    with open("out.csv", "r", encoding="utf-8") as f:
+    with open(out, "r", encoding="utf-8") as f:
         f.readline()  # 吞掉标题行
         for line in f:
             studentFromScv = str(line).replace('\n', '').split(',')
@@ -235,7 +237,7 @@ if __name__ == '__main__':
     students = getResultHaveUPsolved(students_this, students_pre)
     students = getResult(students)
     
-    f = open('out.csv', 'w', encoding="utf8")
+    f = open(out, 'w', encoding="utf8")
     print('Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Rank', file=f)
     
     for stu in students:
