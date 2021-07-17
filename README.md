@@ -40,6 +40,7 @@ https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/out/out.csv
 - 运行时确保out分支上有out.csv文件,且需要有 `out.csv` 中的标题行。
 * 创建比赛时不要设置密码。
 * 每push一次到main分支，都会启动爬虫程序！
+* 不会对pull requests 进行构建。
 ```
 Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Rank
 ```
@@ -79,4 +80,5 @@ git push orgin out
 LyuLumos 2021.2.21
 
 Maybe the last repo built for CUC-ACM Team
-
+## 参考链接：
+* [Customizing the Build](https://docs.travis-ci.com/user/customizing-the-build/#skipping-a-build)
