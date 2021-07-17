@@ -34,11 +34,13 @@ https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/out/out.csv
 
 ## Attention
 
+- 操作前，请仔细阅读此文档。
 - **目前尚未在某个学期内实际测试过，可能有bug。**
 - 运行时确保out分支上有out.csv文件,且需要有 `out.csv` 中的标题行。
 * 创建比赛时不要设置密码。
 * 注意每push一次到main分支，都会构建一次，并且启动爬虫程序,更新上面链接中的数据！
 * push 到out分支，不会自动构建。所以，想要清空out.csv文件中的得分统计数据的话，直接在网页上更改提交也行,但注意必须要有标题行。
+* main分支的pull requets 也会触发构建
 ### 标题行：
 ```
 Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Rank
