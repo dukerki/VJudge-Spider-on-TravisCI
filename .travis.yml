@@ -43,3 +43,4 @@ branches:
   only:
     - data
     - z1933dev
+    - main
