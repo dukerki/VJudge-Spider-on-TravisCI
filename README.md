@@ -70,9 +70,10 @@ python run.py
 git commit -a
 git push orgin out
 ```
-##### 如果只是想要更改main分支上的一些代码，push到main分支上时想要跳过此次构建：
+##### 如果只是想要更改main分支上的一些代码，push到main分支上,想要跳过此次构建：
 参考这个链接：[Skipping a Build #](https://docs.travis-ci.com/user/customizing-the-build/#skipping-a-build)
 
+* 如果只想要统计分数的话就需要构建，更改main分支中的url，并push到main上就行了。
 ##### 
 ## Acknowledgement
 
