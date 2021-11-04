@@ -57,7 +57,7 @@ Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Ra
 ### Windows
 
 #### Prerequest
-请自行下载 Chrome浏览器 和 Chromedriver，注释 `run.py` 74-79行，取消注释第80行，之后再运行。
+请自行下载 Chrome浏览器 和 [Chromedriver](https://chromedriver.chromium.org/downloads),注意需要和你电脑上的谷歌浏览器版本一致，注释 `run.py` 74-79行，取消注释第80行，之后再运行。
 
 #### 本地运行（建议提前做好备份）
 ```bash
