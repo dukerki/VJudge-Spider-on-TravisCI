@@ -30,7 +30,7 @@ https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/main/out.csv
 ```bash
 git pull
 ```
-1. 修改 `main` 分支下的 `url.txt` ，第一行写入本次训练网址，用于统计补题分数，第二行写入上次比赛网址。如果没有，空行就行。
+1. 修改 `main` 分支下的 `url.txt` ，第一行写入本次训练网址，用于统计补题分数，第二行写入上次比赛网址,链接是带有`#rank`的那个。如果没有比赛，留空就行。
 2. 写入完成后，将当前更改push 到远程仓库main分支上。然后会在Travis上自动构建运行。
 3. 在黄色圆点消失之后,最后点击上面的链接查看结果。
 
@@ -57,7 +57,7 @@ Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Ra
 ### Windows
 
 #### Prerequest
-请自行下载 Chrome浏览器 和 Chromedriver，注释 `run.py` 74-79行，取消注释第80行，之后再运行。
+请自行下载 Chrome浏览器 和 [Chromedriver](https://chromedriver.chromium.org/downloads),注意看网页上的版本选择说明。
 
 #### 本地运行（建议提前做好备份）
 ```bash
@@ -67,7 +67,6 @@ python run.py
 #### 如果想要将本地更改推送上去而不触发构建：
 参考这个链接：[Skipping a Build #](https://docs.travis-ci.com/user/customizing-the-build/#skipping-a-build)
 
-##### 
 ## Acknowledgement
 
 - [ididChan](https://github.com/ididChan) 关于 `.travis.yml` 提供的建议和图解

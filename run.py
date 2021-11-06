@@ -5,6 +5,7 @@ import time
 from lxml import etree
 import sys
 from selenium.common.exceptions import InvalidArgumentException
+import pdb;
 
 this_url = ""
 pre_url = ""
@@ -84,7 +85,7 @@ def getResultOfUrl(url, ifShowUpsloved):
     try:
         browser.get(url)
     except InvalidArgumentException:
-        print("Null input or Error")
+        print("No input or Error While Requesting")
         return []
     time.sleep(3)
 
@@ -96,7 +97,6 @@ def getResultOfUrl(url, ifShowUpsloved):
 
     student = []  # 统计所有学生的信息
     work_student = {}  # 题 ==> 学生，用于统计only ac
-
     row = selector.xpath(
         "//*[@id='contest-rank-table']/tbody")[0].getchildren()
 
