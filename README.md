@@ -5,7 +5,7 @@
 
 ## Ranking File Link
 
-https://github.com/LyuLumos/VJudge-Spider-on-TravisCI/blob/main/out.csv
+https://github.com/CUCCS/VJudge-Spider-on-TravisCI/blob/main/out.csv
 
 ## 加分规则：
     总分 = 过题分 + 附加分 + 补题分(一周有效)+ 排名奖励分
