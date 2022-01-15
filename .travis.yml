@@ -6,7 +6,6 @@ install:
   - sudo apt-get install libgconf2-4 libxss1 unzip -y
   - sudo apt-get -f install -y
   - pip install -r requirement.txt
-  #  - echo -e "machine github.com\n  login ${GITHUB_TOKEN}" > ~/.netrc
 env:
   global:
   - USER="Zhang1933"
