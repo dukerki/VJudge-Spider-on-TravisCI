@@ -36,8 +36,7 @@ after_success:
   - ls -al
   - git add .
   - git commit -m "[skip travis] ${MESSAGE}; Build by Travis CI"
-  - git push --force --quiet https://${GITHUB_TOKEN}@github.com/${USER}/{REPO}.git
-  $TRAVIS_BRANCH
+  - git push --force --quiet https://${GITHUB_TOKEN}@github.com/${USER}/{REPO}.git  $TRAVIS_BRANCH
 branches:
   only:
     - main
