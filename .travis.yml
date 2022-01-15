@@ -29,9 +29,7 @@ after_success:
   # - git checkout -b data
   # - git branch
   - cd ${REPO}
-  - git remote rm origin
-  - git remote add origin https:${GITHUB_TOKEN}://@github.com/${USER}/{REPO}.git
-
+  - git remote set-url origin https://${GITHUB_TOKEN}@github.com/${USER}/${REPO}.git > /dev/null 2>&1
   - mv -f ../${FILES} ${FILES}
   - ls -al
   - git add .
