@@ -27,21 +27,29 @@ https://github.com/CUCCS/VJudge-Spider-on-TravisCI/blob/main/out.csv
     else :   +1
  
 ## Usage
-! 使用之前先
+
+**! 使用之前先**
+
 ```bash
 git pull
 ```
-1. 修改 `main` 分支下的 `url.txt` ，第一行写入本次训练网址，用于统计补题分数，第二行写入上次比赛网址,链接是带有`#rank`的那个。如果没有比赛，留空就行。
-2. 写入完成后，将当前更改push 到远程仓库main分支上。然后会在Travis上自动构建运行。
-3. 在黄色圆点消失之后,最后点击上面的链接查看结果。
+
+1. 修改 `main` 分支下的 `url.txt` ，第一行写入本次训练网址，用于统计过题分数，第二行写入上次比赛网址,用于统计补题分数。注意输入链接是以`#rank`结尾的链接，不是比赛地址的链接! 如果上次或这次没有比赛，留空就行。
+2. 写入完成后，将当前更改push 到远程仓库main分支上。然后会在Travis上自动构建运行爬虫。
+3. 等待片刻，在黄色圆点变绿之后,[点击上面的链接](https://github.com/CUCCS/VJudge-Spider-on-TravisCI/blob/main/out.csv)查看自动统计的结果。
 
 ## Attention
 
 - **目前尚未在某个学期内实际测试过，可能有bug。**
+
 - 运行时确保main分支上有out.csv文件,且需要有 `out.csv` 中的标题行。
+
 * 创建比赛时不要设置密码。
+
 * 注意每手动push一次到main分支，都会构建一次，并且启动爬虫程序,更新上面链接中的数据。
+
 * main分支的pull requets 也能够触发构建
+
 ### 标题行：
 ```
 Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Rank
@@ -66,6 +74,9 @@ git clone  https://github.com/LyuLumos/VJudge-Spider-on-TravisCI.git
 python run.py
 ```
 #### 如果想要将本地更改推送上去而不触发构建：
+
+在commit的message加上`[skip travis]`前缀。
+
 参考这个链接：[Skipping a Build #](https://docs.travis-ci.com/user/customizing-the-build/#skipping-a-build)
 
 ## Acknowledgement
