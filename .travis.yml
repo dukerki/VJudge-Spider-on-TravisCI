@@ -39,4 +39,5 @@ branches:
   only:
     - main
     - data
-    - z1933dev
+notifications:
+  email: false
