@@ -1,6 +1,6 @@
 # VJudge-Spider-on-TravisCI
 
-[![Build Status](https://app.travis-ci.com/LyuLumos/VJudge-Spider-on-TravisCI.svg?branch=main)](https://app.travis-ci.com/LyuLumos/VJudge-Spider-on-TravisCI)
+[![Build Status](https://app.travis-ci.com/CUCCS/VJudge-Spider-on-TravisCI.svg?branch=main)](https://app.travis-ci.com/CUCCS/VJudge-Spider-on-TravisCI)
 谁知道它能不能跑起来...
 
 ## Ranking File Link
