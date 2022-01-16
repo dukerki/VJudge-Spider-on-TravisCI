@@ -1,6 +1,7 @@
 # VJudge-Spider-on-TravisCI
 
 [![Build Status](https://app.travis-ci.com/CUCCS/VJudge-Spider-on-TravisCI.svg?branch=main)](https://app.travis-ci.com/CUCCS/VJudge-Spider-on-TravisCI)
+
 谁知道它能不能跑起来...
 
 ## Ranking File Link
@@ -57,7 +58,11 @@ Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Ra
 
 ## Meet Error?
 
-如果爬虫代码遇到问题，建议在本地运行,调试代码。需要的包在 `requirement.txt` 中。
+* 如果爬虫代码遇到问题，建议在本地运行,调试代码。需要的包在 `requirement.txt` 中。
+
+* 如果状态显示了红色,Fail了,点开[查看构建日志](https://app.travis-ci.com/CUCCS/VJudge-Spider-on-TravisCI)看错误。
+
+
 ### 本地运行：
 ### Linux
 
