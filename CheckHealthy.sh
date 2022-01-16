@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-out="https://raw.githubusercontent.com/${USER}/${REPO}/${TRAVIS_BRANCH}/out.cs"
+out="https://raw.githubusercontent.com/${USER}/${REPO}/${TRAVIS_BRANCH}/out.csv"
 
 wget -O ../${FILES}  "$out" 
 
