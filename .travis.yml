@@ -35,6 +35,7 @@ after_success:
   - git add .
   - git commit -m "[skip travis] ${MESSAGE}; Build by Travis CI"
   - git push --force --quiet origin  $TRAVIS_BRANCH
+  - bash CheckHealthy.sh
 branches:
   only:
     - main
