@@ -38,6 +38,6 @@ after_success:
 branches:
   only:
     - main
-    - data
+    - dev
 notifications:
   email: false
