@@ -211,6 +211,9 @@ def getResult(students):
             if findit is False:
                 tmpstu = contestant()
                 tmpstu.name = studentFromScv[0]
+                if(len(studentFromScv)<8):
+                    print("out.csv文件中可能有不满足列格式的行")
+                    exit(1)
                 tmpstu.score_sum = studentFromScv[7]
                 students.append(tmpstu)
     f.close()
