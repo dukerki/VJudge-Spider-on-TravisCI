@@ -4,7 +4,7 @@
 
 谁知道它能不能跑起来...
 
-## Ranking File Link
+## Rank 
 
 https://github.com/CUCCS/VJudge-Spider-on-TravisCI/blob/main/out.csv
 
@@ -47,7 +47,7 @@ git pull
 
 * 创建比赛时不要设置密码。
 
-* 注意每手动push一次到main分支，都会构建一次，并且启动爬虫程序,更新上面链接中的数据。
+* 注意每手动push一次到main分支，都会构建一次，并且启动爬虫程序,更新上面链接中的积分。
 
 * main分支的pull requets 也能够触发构建
 
@@ -70,7 +70,7 @@ Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Ra
 
 ### Windows
 
-#### Prerequest
+#### Prerequisite
 请自行下载 Chrome浏览器 和 [Chromedriver](https://chromedriver.chromium.org/downloads),注意看网页上的版本选择说明。
 
 #### 本地运行（建议提前做好备份）
