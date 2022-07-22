@@ -18,7 +18,7 @@ jobs:
       - name: prerequisite installing
         run: | 
           sudo apt-get update
-          sudo apt-get install libgconf2-4 libxss1 unzip -y
+          sudo apt-get install  libxss1 unzip -y
           pip install -r requirement.txt
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
