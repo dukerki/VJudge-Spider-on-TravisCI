@@ -22,7 +22,7 @@ jobs:
           pip install -r requirement.txt
 
       - name: installing chromedriver
-        uses: browser-actions/setup-chrome@latest 
+        uses: nanasess/setup-chromedriver@v1
 
       - name: runing vjudge spider
         run: |
@@ -32,4 +32,4 @@ jobs:
       - name: commit results
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Automated Update Vjudge Score
+          commit_message: Automatically update scores
