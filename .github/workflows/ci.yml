@@ -1,0 +1,38 @@
+name: 'Vjudge Score Spider'
+on:
+  workflow_dispatch:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  spider-score:
+    runs-on: ubuntu-20.04
+    env:
+      LATEST: $(wget -q -O - http://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+    steps:
+      - name: check out repo
+        uses: actions/checkout@v3
+
+      - name: prerequisite installing
+        run: | 
+          sudo apt-get update
+          sudo apt-get install libgconf2-4 libxss1 unzip -y
+          pip install -r requirement.txt
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
+          wget http://chromedriver.storage.googleapis.com/$LATEST/chromedriver_linux64.zip    
+          unzip chromedriver_linux64.zip
+          chmod +x chromedriver
+          sudo mv chromedriver /usr/bin/
+          chromedriver --version
+
+      - name: spider vjudge
+        run: |
+          python run.py
+
+      - name: commit results
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Automated Update Vjudge Score
