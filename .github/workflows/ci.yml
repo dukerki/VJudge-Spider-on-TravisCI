@@ -23,11 +23,10 @@ jobs:
 
       - name: installing chromedriver
         uses: browser-actions/setup-chrome@latest 
-        run: 
-          chromedriver --version
 
       - name: runing vjudge spider
         run: |
+          chromedriver --version
           python run.py
 
       - name: commit results
