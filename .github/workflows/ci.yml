@@ -15,20 +15,18 @@ jobs:
       - name: check out repo
         uses: actions/checkout@v3
 
-      - name: prerequisite installing
+      - name: installing python prerequisite 
         run: | 
           sudo apt-get update
-          sudo apt-get install  libxss1 unzip -y
+          sudo apt-get install  libxss1 -y
           pip install -r requirement.txt
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo dpkg -i google-chrome-stable_current_amd64.deb
-          wget http://chromedriver.storage.googleapis.com/$LATEST/chromedriver_linux64.zip    
-          unzip chromedriver_linux64.zip
-          chmod +x chromedriver
-          sudo mv chromedriver /usr/bin/
+
+      - name: installing chromedriver
+        uses: browser-actions/setup-chrome@latest 
+        run: 
           chromedriver --version
 
-      - name: spider vjudge
+      - name: runing vjudge spider
         run: |
           python run.py
 
