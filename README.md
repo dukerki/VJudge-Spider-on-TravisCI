@@ -74,12 +74,12 @@ Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Ra
 
 #### 本地运行（建议提前做好备份）
 ```bash
-git clone  https://github.com/LyuLumos/VJudge-Spider-on-TravisCI.git
+git clone  https://github.com/CUCCS/VJudge-Spider-on-TravisCI.git
 python run.py
 ```
 #### 如果想要将本地更改推送上去而不触发构建：
 
-在commit的message加上`[skip ci]`前缀。
+在 commit 的 message 加上 `[skip ci]` 前缀。
 
 参考链接：[Skipping workflow runs](https://docs.github.com/en/actions/managing-workflow-runs/skipping-workflow-runs)
 
