@@ -1,6 +1,7 @@
 # VJudge-Spider-on-TravisCI
 
-[![Build Status](https://app.travis-ci.com/CUCCS/VJudge-Spider-on-TravisCI.svg?branch=main)](https://app.travis-ci.com/CUCCS/VJudge-Spider-on-TravisCI)
+![workflow](https://github.com/CUCCS/VJudge-Spider-on-TravisCI/actions/workflows/ci.yml/badge.svg)
+
 
 谁知道它能不能跑起来...
 
@@ -49,7 +50,6 @@ git pull
 
 * 注意每手动push一次到main分支，都会构建一次，并且启动爬虫程序,更新上面链接中的积分。
 
-* main分支的pull requets 也能够触发构建
 
 ### 标题行：
 ```
@@ -60,17 +60,16 @@ Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Ra
 
 * 如果爬虫代码遇到问题，建议在本地运行,调试代码。需要的包在 `requirement.txt` 中。
 
-* 如果状态显示了红色,Fail了,点开[查看构建日志](https://app.travis-ci.com/CUCCS/VJudge-Spider-on-TravisCI)看错误。
-
 
 ### 本地运行：
 ### Linux
 
-`.travis.yml` 中包含了需要的全部操作，不需要更改爬虫代码。
+`.github/workflows/ci.yml` 中包含了需要的全部操作，不需要更改爬虫代码。
 
 ### Windows
 
 #### Prerequisite
+
 请自行下载 Chrome浏览器 和 [Chromedriver](https://chromedriver.chromium.org/downloads),注意看网页上的版本选择说明。
 
 #### 本地运行（建议提前做好备份）
@@ -80,9 +79,9 @@ python run.py
 ```
 #### 如果想要将本地更改推送上去而不触发构建：
 
-在commit的message加上`[skip travis]`前缀。
+在commit的message加上`[skip ci]`前缀。
 
-参考这个链接：[Skipping a Build #](https://docs.travis-ci.com/user/customizing-the-build/#skipping-a-build)
+参考链接：[Skipping workflow runs](https://docs.github.com/en/actions/managing-workflow-runs/skipping-workflow-runs)
 
 ## Acknowledgement
 
@@ -93,5 +92,3 @@ python run.py
 LyuLumos 2021.2.21
 
 Maybe the last repo built for CUC-ACM Team
-## 参考链接：
-* [Customizing the Build](https://docs.travis-ci.com/user/customizing-the-build/#skipping-a-build)
