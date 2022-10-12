@@ -14,7 +14,7 @@ options.add_argument('--headless')
 options.add_argument('--disable-gpu')
 options.add_argument("window-size=1024,768")
 options.add_experimental_option(
-"excludeSwitches", ['enable-automation', 'enable-logging'])
+    "excludeSwitches", ['enable-automation', 'enable-logging'])
 options.add_argument("--no-sandbox")
 options.add_experimental_option(
     "excludeSwitches", ['enable-automation', 'enable-logging'])
@@ -75,7 +75,6 @@ def select_elements():
     time.sleep(0.5)
     global time_ele
     time_ele = driver.find_elements(By.CSS_SELECTOR, 'div > span.absolute')
-    driver.close()
 
 
 class contest:
@@ -183,5 +182,7 @@ if __name__ == '__main__':
     select_contests()
     check_status()
     save_in_url_txt_and_run()
+
+driver.close()  # 关闭浏览器
 
 # name, begin_time, rank_url, ID, update_time
