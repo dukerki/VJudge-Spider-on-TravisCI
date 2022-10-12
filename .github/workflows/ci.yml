@@ -29,7 +29,7 @@ jobs:
       - name: runing vjudge spider
         run: |
           chromedriver --version
-          python temp_test.py
+          python get_url.py
 
       - name: commit results
         uses: stefanzweifel/git-auto-commit-action@v4
