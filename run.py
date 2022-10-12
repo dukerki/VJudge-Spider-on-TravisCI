@@ -5,12 +5,13 @@ import time
 from lxml import etree
 import sys
 from selenium.common.exceptions import InvalidArgumentException
-import pdb;
+import pdb
 
 this_url = ""
 pre_url = ""
-REPO="VJudge-Spider-on-TravisCI"
-out="out.csv"
+REPO = "VJudge-Spider-on-TravisCI"
+out = "out.csv"
+
 
 def readin():
     global this_url
@@ -79,17 +80,18 @@ def getResultOfUrl(url, ifShowUpsloved):
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument("window-size=1024,768")
+    chrome_options.add_experimental_option(
+    "excludeSwitches", ['enable-automation', 'enable-logging'])
     chrome_options.add_argument("--no-sandbox")
     browser = webdriver.Chrome(options=chrome_options)
-    # browser = webdriver.Chrome()
     try:
         browser.get(url)
     except InvalidArgumentException:
         print("No input or Error While Requesting")
         return []
     time.sleep(3)
-
-    browser.find_element_by_xpath('//*[@id="btn-setting"]').click()
+    from selenium.webdriver.common.by import By
+    browser.find_element(By.XPATH, '//*[@id="btn-setting"]').click()
     if ifShowUpsloved:
         browser.execute_script(
             "document.getElementsByTagName('label')[2].click()")
@@ -116,13 +118,13 @@ def getResultOfUrl(url, ifShowUpsloved):
                 work_student[chr(ord('A') + j - 4)].append(stu.name)
 
             if "team" in classes:
-                if len(column[j].xpath("./div/a/span/text()"))<1 :
-                    print("invaild name contestant") # 如果没有nickname，就不会统计
+                if len(column[j].xpath("./div/a/span/text()")) < 1:
+                    print("invaild name contestant")  # 如果没有nickname，就不会统计
                     continue
 
                 stu.name = (str(column[j].xpath(
                     "./div/a/span/text()")[0])).replace('(', '').replace(')', '').replace(' ', '')
-                    
+
             if "accepted" in classes:
                 stu.accepted += 1
 
@@ -147,10 +149,10 @@ def getResultOfUrl(url, ifShowUpsloved):
         stu.score_ac = stu.accepted
         stu.score_up = stu.upsolved * 0.5
         stu.score_extra = (stu.accepted_fb - stu.only_ac) * \
-                          0.2 + stu.only_ac * 0.5
+            0.2 + stu.only_ac * 0.5
         stu.score_sum = stu.score_ac + stu.score_extra
         stu.score_this = stu.score_sum
-    
+
     # 计算本场来了的比赛排名奖励分：
     students = sorted(student)
     if not ifShowUpsloved:
@@ -181,14 +183,14 @@ def getResultHaveUPsolved(students_this, students_pre):
                 students_pre.remove(stu_pre)
 
         students.append(tmpstu)
-    
+
     # 维护本次没有来，但是上次来了的同学的信息
     for stu_pre in students_pre:
         tmpstu = contestant()
         tmpstu.upsolved = stu_pre.upsolved
         tmpstu.score_up = stu_pre.score_up
         tmpstu.score_sum += tmpstu.score_up
-        tmpstu.name=stu_pre.name
+        tmpstu.name = stu_pre.name
         students.append(tmpstu)
 
     return students
@@ -205,13 +207,13 @@ def getResult(students):
             for stu in students:
                 if stu.name == studentFromScv[0]:
                     stu.score_sum = float(stu.score_sum) + \
-                                    float(studentFromScv[7])
+                        float(studentFromScv[7])
                     findit = True
                     break
             if findit is False:
                 tmpstu = contestant()
                 tmpstu.name = studentFromScv[0]
-                if(len(studentFromScv)<8):
+                if (len(studentFromScv) < 8):
                     print("out.csv文件中可能有不满足列格式的行")
                     exit(1)
                 tmpstu.score_sum = studentFromScv[7]
@@ -223,10 +225,33 @@ def getResult(students):
         stu.score_this = float(stu.score_this) + float(stu.score_rank)
 
     students = sorted(students)
-  
+
     for stu in students:
         stu.rank = students.index(stu) + 1
     return students
+
+
+def Crawl_and_save():
+    readin()
+    students_this = getResultOfUrl(this_url, False)  # 本次页面统计，不统计upsloved的成绩
+    print("this_url success")
+    students_pre = getResultOfUrl(pre_url, True)  # 对上次比赛页面进行统计，主要得到upsloved成绩
+    print("pre_url success")
+    # 整合本次AC，only AC， fb成绩和上次比赛的补题成绩
+    students = getResultHaveUPsolved(students_this, students_pre)
+    students = getResult(students)
+
+    f = open(out, 'w', encoding="utf8")
+    print('Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Rank', file=f)
+
+    for stu in students:
+        if stu.name != '':
+            print('{0},{1},{2},{3},{4},{5},{6:.1f},{7:.1f},{8}'.format(stu.name, stu.accepted, stu.only_ac,
+                                                                       stu.accepted_fb, stu.score_rank, stu.upsolved,
+                                                                       stu.score_this, stu.score_sum, stu.rank),
+                  file=f)
+    f.close()
+    print("Finished")
 
 
 if __name__ == '__main__':
@@ -238,10 +263,10 @@ if __name__ == '__main__':
     # 整合本次AC，only AC， fb成绩和上次比赛的补题成绩
     students = getResultHaveUPsolved(students_this, students_pre)
     students = getResult(students)
-    
+
     f = open(out, 'w', encoding="utf8")
     print('Name, Accepted, OnlyAC, FirstBlood, ThisRankScore, Upsolved, Score, SumScore, Rank', file=f)
-    
+
     for stu in students:
         if stu.name != '':
             print('{0},{1},{2},{3},{4},{5},{6:.1f},{7:.1f},{8}'.format(stu.name, stu.accepted, stu.only_ac,
