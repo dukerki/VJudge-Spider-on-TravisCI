@@ -136,8 +136,17 @@ def save_in_url_txt_and_run():
 # 2022-10-12 13:30:00
     global contests
     contests.reverse()  # 从远及近的处理
+
+    def eight_hours(text: str) -> str:
+        from datetime import datetime
+        from datetime import timezone
+        from datetime import timedelta
+        from datetime import timedelta
+        temp = datetime.strptime(text, '%Y-%m-%d %H:%M:%S')+timedelta(hours=8)
+        return temp.strftime("%Y-%m-%d %H:%M:%S")
+
     for contest in contests:
-        if (contest.ID not in completed_contest_ID) and (contest.begin_time < crt_time):
+        if (int(contest.ID) not in completed_contest_ID) and (contest.begin_time < crt_time):
             # 如果此场比赛还没有被记录 而且 开始时间大于当前时间
 
             # 先更新 url.txt
@@ -154,8 +163,9 @@ def save_in_url_txt_and_run():
             run.Crawl_and_save()
 
             # 将结果记录到 ContestRecord.csv 中
+            #由于服务器是用的格林尼治时间，这里需要加上 8 小时
             ContestRecord.write(
-                f"{contest.name}, {contest.begin_time}, {contest.rank_url}, {contest.ID}, {crt_time}\n")
+                f"{contest.name}, {eight_hours(contest.begin_time)}, {contest.rank_url}, {contest.ID}, {eight_hours(crt_time)}\n")
             pre_url = contest.rank_url+'\n'  # 继续更新 pre_url
 
     ContestRecord.close()

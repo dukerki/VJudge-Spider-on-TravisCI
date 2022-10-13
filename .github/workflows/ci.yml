@@ -1,10 +1,9 @@
 name: 'Vjudge Score Spider'
 on:
-  issue_comment: #评论即运行
-    types: [created]
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '55 12 * * *'
   workflow_dispatch:
-  schedule: # 每天下午 6:00 会跑一遍 北京时间 18:00 = UTC 10:00
-    - cron: '20 11 * * *' 
 
 permissions:
   contents: write
