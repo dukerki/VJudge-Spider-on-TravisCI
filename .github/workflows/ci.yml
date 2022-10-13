@@ -4,7 +4,7 @@ on:
     types: [created]
   workflow_dispatch:
   schedule: # 每天下午 6:00 会跑一遍
-    - cron: "0 10 * * *" # 北京时间 18:00 = UTC 10:00
+    - cron: '55 10 * * *' # 北京时间 18:00 = UTC 10:00
 
 permissions:
   contents: write
