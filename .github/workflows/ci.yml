@@ -2,8 +2,10 @@ name: 'Vjudge Score Spider'
 on:
   issue_comment: #评论即运行
     types: [created]
-  workflow_dispatch:
-  push:
+  # workflow_dispatch:
+  # - push
+  schedule: # 每天下午 6:00 会跑一遍
+    - cron: "0 10 * * *" # 北京时间 18:00 = UTC 10:00
 
 permissions:
   contents: write
