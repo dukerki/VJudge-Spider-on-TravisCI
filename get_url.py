@@ -7,6 +7,10 @@ from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
+# 配置区
+
+ContestPrefix = r'CUC-ACM-2022-Autumn-Training Round'
+
 # =========================初始化操作===========================
 
 options = webdriver.ChromeOptions()
@@ -101,7 +105,7 @@ def select_contests():
         crt_contest.name = contest_ele.text
 
         # 排除非`2022 年新生秋季训练比赛`
-        if not re.match(r'CUC-ACM-2022-Autumn-Training Round', crt_contest.name, re.M | re.I):
+        if not re.match(ContestPrefix, crt_contest.name, re.M | re.I):
             continue
 
         crt_contest.rank_url = 'https://vjudge.net/contest/'+crt_contest.ID+'#rank'
@@ -163,7 +167,7 @@ def save_in_url_txt_and_run():
             run.Crawl_and_save()
 
             # 将结果记录到 ContestRecord.csv 中
-            #由于服务器是用的格林尼治时间，这里需要加上 8 小时
+            # 由于服务器是用的格林尼治时间，这里需要加上 8 小时
             ContestRecord.write(
                 f"{contest.name}, {eight_hours(contest.begin_time)}, {contest.rank_url}, {contest.ID}, {eight_hours(crt_time)}\n")
             pre_url = contest.rank_url+'\n'  # 继续更新 pre_url
