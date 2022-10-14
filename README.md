@@ -20,7 +20,7 @@ name, begin_time, rank_url, ID, update_time
 
 ```
 
-4. 设置定时执行
+5. 设置定时执行
 
 > 由于 `GitHub` 中的 `Schedule` 定时执行功能并非立即执行，而是开始排队——延迟可能高达一个多小时，甚至直接不执行。而比赛一般都在每周星期三 & 星期六下午 6：00 结束，我们需要一种 _准时执行_ 的方法。所以这里通过 `阿里云` 的 `函数计算（FC）` 功能 **定时** 向 `GitHub` 的 `API` 发送请求，通过 `GitHub` 的 `API` 触发 `workflows` 运行。实例是用的阿里云的 `函数计算` 功能来实现定时触发 `GitHub` 的 `API` （阿里云的配置方法详见 [Github Action 的 Schedule 运行不准时的解决办法](https://zhuanlan.zhihu.com/p/379365305)，其执行的函数为 `Ali_Triger.py`）
 
