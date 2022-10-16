@@ -27,7 +27,7 @@ def import_name_list():
             i += 1
             if i > max_participants_num:
                 break
-            name_list.append(row[0])
+            name_list.append(row[0].replace(' ', ''))  # 去除名字间的空格
 
 
 def cal_probablity():
@@ -72,7 +72,8 @@ def query_and_save_in_csv(file_location: str):
         # 如果之前有抽奖记录
         if content and content[0].strip():
             # 取出上一次的字符串
-            last_lucky = content[-1][:-1].split(',')[-Lucky_Dog_Num:]
+            last_lucky = content[-1][:-
+                                     1].replace(' ', '').split(',')[-Lucky_Dog_Num:]
             print(f'上次中奖人员：{last_lucky}')
             crt_luck = Draw_Luckydog()
             # 如果有人又中奖了（看是否有交集）
@@ -83,7 +84,7 @@ def query_and_save_in_csv(file_location: str):
             f.write(f"Time, LuckyDog 1, LuckyDog 2, LuckyDog 3, LuckyDog 4\n")
             crt_luck = crt_luck = Draw_Luckydog()
         print('本次中奖人员：', crt_luck)
-        name_str = str(Draw_Luckydog())[1:-1].replace('\'', '')
+        name_str = str(crt_luck)[1:-1].replace('\'', '')
         f.write(f"{Peking_Time()}, {name_str}\n")
 
 
