@@ -10,6 +10,7 @@ from selenium.webdriver.common.by import By
 # 配置区
 
 ContestPrefix = r'CUC-ACM-2022-Autumn-Training Round'
+Draw = True  # 是否对每次比赛进行抽奖
 
 # =========================初始化操作===========================
 
@@ -170,6 +171,9 @@ def save_in_url_txt_and_run():
             # 由于服务器是用的格林尼治时间，这里需要加上 8 小时
             ContestRecord.write(
                 f"{contest.name}, {eight_hours(contest.begin_time)}, {contest.rank_url}, {contest.ID}, {eight_hours(crt_time)}\n")
+            if Draw:  # 如果需要抽奖
+                import LotteryMachine
+                LotteryMachine.rowing_system()  # 抽奖
             pre_url = contest.rank_url+'\n'  # 继续更新 pre_url
 
     ContestRecord.close()

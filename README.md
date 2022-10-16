@@ -2,17 +2,20 @@
 
 ![workflow](https://github.com/CUCCS/VJudge-Spider-on-TravisCI/actions/workflows/ci.yml/badge.svg)
 
-> 此项目基于 `吕师哥` 开发的 `run.py`（见下文）
+> 此项目基于 `吕师哥` 开发的 `run.py`（关于 `run.py` 的 `说明文档` 见下文）。灵感来源于 `华睿师哥` 之前在此仓库使用的 `Action`
+
+> Mr.Nobody 2022-10-16
 
 ## 目的
 
-- 实现比赛积分统计的 `定时全自动化` 执行
+1. 实现比赛积分统计的 `定时全自动化` 执行
+2. （可选）在更新完积分后，每场比赛 `自动抽奖`，并将结果计入至
 
 ## 新学期使用前先
 
-1. 根据本学期比赛的名称 `前缀` 修改 `get_url.py` 中的 `ContestPrefix` 变量（如 `'CUC-ACM-2022-Autumn-Training Round'`）
+1. 根据本学期比赛的名称 `前缀` 修改 `get_url.py` 中的 `ContestPrefix` 变量（如 `'CUC-ACM-2022-Autumn-Training Round'`）；如果需要每次有比赛进行更新的时候进行 `加权抽奖`，请保证变量 `Draw` 为 `True`；否则为 `False`
 2. 如果 `out.csv` 中还有上学期的记录，还是将数据存入至 `以往数据` 文件夹留存比较好
-3. 清空 `out.csv`，`url.txt`（只清空里面的内容，不要删除文件本身）
+3. 清空 `out.csv`，`url.txt`，`LuckyDogRecord.csv`，`Weight.csv`（只清空里面的内容，不要删除文件本身）
 4. 将 `ContestRecord.csv` 清空为下面的格式（记得第一行后有一个换行符，也就是说一共有两行）
 
 ```txt
@@ -22,13 +25,24 @@ name, begin_time, rank_url, ID, update_time
 
 5. 设置定时执行
 
-> 由于 `GitHub` 中的 `Schedule` 定时执行功能并非立即执行，而是开始排队——延迟可能高达一个多小时，甚至直接不执行。而比赛一般都在每周星期三 & 星期六下午 6：00 结束，我们需要一种 _准时执行_ 的方法。所以这里通过 `阿里云` 的 `函数计算（FC）` 功能 **定时** 向 `GitHub` 的 `API` 发送请求，通过 `GitHub` 的 `API` 触发 `workflows` 运行。实例是用的阿里云的 `函数计算` 功能来实现定时触发 `GitHub` 的 `API` （阿里云的配置方法详见 [Github Action 的 Schedule 运行不准时的解决办法](https://zhuanlan.zhihu.com/p/379365305)，其执行的函数为 `Ali_Triger.py`）
+> 由于 `GitHub` 中的 `Schedule` 定时执行功能并非立即执行，而是开始排队——延迟可能高达一个多小时，甚至直接不执行。而比赛一般都在每周星期三 & 星期六下午 6：00 结束，我们需要一种 _准时执行_ 的方法。所以这里通过 `阿里云` 的 `函数计算（FC）` 功能 **定时** 向 `GitHub` 的 `API` 发送请求，通过 `GitHub` 的 `API` 触发 `workflows` 运行。实例是用的阿里云的 `函数计算` 功能来实现定时触发 `GitHub` 的 `API` （阿里云的配置方法详见 [运行不准时的解决办法](https://zhuanlan.zhihu.com/p/379365305)，其执行的函数为 `Ali_Triger.py`）
 
 > 当然，如果不想部署阿里云的话就需要每次手动去 `Actions` 栏里面去 `Run workflow`
 
 ### 如果之前有多场比赛还没有更新
 
 > 如果有多个比赛 `需要更新`，则会依次执行（所以如果一个学期之前都没有用此项目来记录积分也不要紧，只要比赛命名的前缀相同，该程序就会将所有的比赛 **依次** 更新完成）
+
+### 关于抽奖
+
+- 抽奖是一个加权抽奖。参与抽奖的同学为 `out.csv` 中排名前 `max_participants_num`（可以从 `LotteryMachine.py` 中修改此变量）
+- 关于权重的计算——每次都会将参与抽奖的 `同学名字` 以及 `权重` 记录到 `Weight.csv` 中。目前的权重是根据此公式计算得出的（其实就是一个二次函数，$x$ 是积分排名）
+
+$$
+weight = 100 - \frac{x^2}{25}
+$$
+
+- 抽奖结果将会以 `csv` 文件的形式保存至 `LuckyDogRecord.csv` 中，作为 `日志`，也方便领奖
 
 ## 原理
 
