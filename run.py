@@ -77,11 +77,11 @@ def getResultOfUrl(url, ifShowUpsloved):
     # browser = webdriver.Chrome('/home/travis/virtualenv/python3.7.1/chromedriver',options=options)
 
     chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
+    # chrome_options.add_argument('--headless')
+    # chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument("window-size=1024,768")
     chrome_options.add_experimental_option(
-    "excludeSwitches", ['enable-automation', 'enable-logging'])
+        "excludeSwitches", ['enable-automation', 'enable-logging'])
     chrome_options.add_argument("--no-sandbox")
     browser = webdriver.Chrome(options=chrome_options)
     try:
@@ -93,8 +93,8 @@ def getResultOfUrl(url, ifShowUpsloved):
     from selenium.webdriver.common.by import By
     browser.find_element(By.XPATH, '//*[@id="btn-setting"]').click()
     if ifShowUpsloved:
-        browser.execute_script(
-            "document.getElementsByTagName('label')[2].click()")
+        browser.find_element(  # Vjudge 前端改版，现在改用 XPATH 定位元素
+            By.XPATH, '//*[@id="setting-show-practice"]/label[1]').click()
     selector = etree.HTML(browser.page_source)
 
     student = []  # 统计所有学生的信息
