@@ -93,6 +93,7 @@ def getResultOfUrl(url, ifShowUpsloved):
     from selenium.webdriver.common.by import By
     browser.find_element(By.XPATH, '//*[@id="btn-setting"]').click()
     if ifShowUpsloved:
+        time.sleep(2) # 增加加载时间
         browser.find_element(  # Vjudge 前端改版，现在改用 XPATH 定位元素
             By.XPATH, '//*[@id="setting-show-practice"]/label[1]').click()
     selector = etree.HTML(browser.page_source)
