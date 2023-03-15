@@ -77,8 +77,8 @@ def getResultOfUrl(url, ifShowUpsloved):
     # browser = webdriver.Chrome('/home/travis/virtualenv/python3.7.1/chromedriver',options=options)
 
     chrome_options = webdriver.ChromeOptions()
-    # chrome_options.add_argument('--headless')
-    # chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument("window-size=1024,768")
     chrome_options.add_experimental_option(
         "excludeSwitches", ['enable-automation', 'enable-logging'])
