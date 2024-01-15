@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 
 # 配置区
 
-ContestPrefix = r'CUC-ACM-2023-Spring-Training Round'
+ContestPrefix = r'CUC-ACM-2024-Winter-Training'
 Draw = False  # 是否对每次比赛进行抽奖
 
 # =========================初始化操作===========================
