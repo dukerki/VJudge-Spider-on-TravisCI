@@ -13,8 +13,8 @@ permissions:
 jobs:
   spider-score:
     runs-on: ubuntu-latest
-    env:
-      LATEST: $(wget -q -O - https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+    # env:
+    #   LATEST: $(wget -q -O - https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
     steps:
       - name: check out repo
         uses: actions/checkout@v3
@@ -27,6 +27,8 @@ jobs:
 
       - name: installing chromedriver
         uses: nanasess/setup-chromedriver@v1
+        with:
+          chromedriver-version: '120.0.6099.199'
 
       - name: runing vjudge spider
         run: |
