@@ -13,8 +13,8 @@ permissions:
 jobs:
   spider-score:
     runs-on: ubuntu-latest
-    # env:
-    #   LATEST: $(wget -q -O - https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+    env:
+      LATEST: $(wget -q -O - https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
     steps:
       - name: check out repo
         uses: actions/checkout@v3
@@ -24,11 +24,16 @@ jobs:
           sudo apt-get update
           sudo apt-get install  libxss1 -y
           pip install -r requirement.txt
+      
+      - name: installing chrome 114
+        run: |
+          wget https://www.slimjet.com/chrome/download-chrome.php?file=files%2F104.0.5112.102%2Fgoogle-chrome-stable_current_amd64.deb
+          sudo apt install ./google-chrome-stable_current_amd64.deb -y
 
       - name: installing chromedriver
         uses: nanasess/setup-chromedriver@v1
         with:
-          chromedriver-version: '114.0.5735.90'
+          chromedriver-version: '104.0.5112.79'
 
       - name: runing vjudge spider
         run: |
