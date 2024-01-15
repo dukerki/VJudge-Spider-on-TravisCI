@@ -1,8 +1,8 @@
-name: 'Vjudge Score Spider'
+name: "Vjudge Score Spider"
 on:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron:  '0 10 * * *' # 延迟太久了
+    - cron: "0 10 * * *" # 延迟太久了
   workflow_dispatch:
   issues: # 评论触发
     types: [opened]
@@ -19,21 +19,14 @@ jobs:
       - name: check out repo
         uses: actions/checkout@v3
 
-      - name: installing python prerequisite 
-        run: | 
+      - name: installing python prerequisite
+        run: |
           sudo apt-get update
           sudo apt-get install  libxss1 -y
           pip install -r requirement.txt
-      
-      - name: installing chrome 114
-        run: |
-          wget https://www.slimjet.com/chrome/download-chrome.php?file=files%2F104.0.5112.102%2Fgoogle-chrome-stable_current_amd64.deb
-          sudo apt install ./google-chrome-stable_current_amd64.deb -y
 
       - name: installing chromedriver
-        uses: nanasess/setup-chromedriver@v1
-        with:
-          chromedriver-version: '104.0.5112.79'
+        uses: nanasess/setup-chromedriver@v2
 
       - name: runing vjudge spider
         run: |
