@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   spider-score:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     env:
       LATEST: $(wget -q -O - http://chromedriver.storage.googleapis.com/LATEST_RELEASE)
     steps:
