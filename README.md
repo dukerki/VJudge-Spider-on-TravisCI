@@ -70,8 +70,8 @@ https://github.com/CUCCS/VJudge-Spider-on-TravisCI/blob/main/out.csv
     1分
 
     附加分
-    Only AC: +0.5
-    FB:      +0.2
+    Only AC: +1
+    FB:      +0.5
 
     补题分
     solve_up:+0.5

@@ -46,8 +46,8 @@ class contestant:
     # 1分
 
     # 附加分
-    # Only AC: +0.5    max(1)
-    # FB:      +0.2    max(1)
+    # Only AC: +1      max(1)
+    # FB:      +0.5    max(1)
 
     # 补题分
     # up:      +0.5
@@ -150,7 +150,7 @@ def getResultOfUrl(url, ifShowUpsloved):
         stu.score_ac = stu.accepted
         stu.score_up = stu.upsolved * 0.5
         stu.score_extra = (stu.accepted_fb - stu.only_ac) * \
-            0.2 + stu.only_ac * 0.5
+            0.5 + stu.only_ac * 1
         stu.score_sum = stu.score_ac + stu.score_extra
         stu.score_this = stu.score_sum
 
