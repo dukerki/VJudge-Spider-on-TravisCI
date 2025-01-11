@@ -58,9 +58,8 @@ def get_crt_time() -> str:
 def select_elements():
     '''选出后续需要使用的元素'''
 
-    search_box = driver.find_element("xpath",
-                                     r'/html/body/div[1]/div/div[2]/div/table/thead/tr/th[3]/input')
-
+    search_box = driver.find_element("xpath",r'/html/body/div[1]/div/div[2]/div/table/thead/tr/th[3]/input')
+    print(driver)
     search_box.send_keys('CUC\n')
 
     contents_sort = driver.find_element(
