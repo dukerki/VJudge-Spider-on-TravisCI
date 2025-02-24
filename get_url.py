@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 
 # 配置区
 
-ContestPrefix = r"CUC-ACM-2024-Spring-Training"
+ContestPrefix = r"CUC-ACM-2025-Winter-Training"
 Draw = False  # 是否对每次比赛进行抽奖
 
 # =========================初始化操作===========================
@@ -57,14 +57,11 @@ def get_crt_time() -> str:
 
 def select_elements():
     '''选出后续需要使用的元素'''
-
-    search_box = driver.find_element("xpath",
-                                     r'/html/body/div[1]/div/div[2]/div/table/thead/tr/th[3]/input')
-
+    search_box = driver.find_element("xpath",r"/html/body/div[1]/div/div[2]/div/table/thead/tr/th[3]/input")
+    
     search_box.send_keys('CUC\n')
 
-    contents_sort = driver.find_element(
-        "xpath", r'/html/body/div[1]/div/div[2]/div/table/thead/tr/th[5]')
+    contents_sort = driver.find_element("xpath", r'/html/body/div[1]/div/div[2]/div/table/thead/tr/th[5]')
 
     contents_sort.click()
     time.sleep(2)
